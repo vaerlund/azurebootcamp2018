@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs.Host;
@@ -40,9 +39,11 @@ namespace TollBooth
             {
                 // MaxItemCount value tells the document query to retrieve 100 documents at a time until all are returned.
                 // TODO 5: Retrieve a List of LicensePlateDataDocument objects from the collectionLink where the exported value is false.
-                // COMPLETE: licensePlates = _client.CreateDocumentQuery ...
+                licensePlates = _client.CreateDocumentQuery<LicensePlateDataDocument>(collectionLink,
+                        new FeedOptions() { MaxItemCount = 100 })
+                    .Where(l => l.exported == false)
+                    .ToList();
                 // TODO 6: Remove the line below.
-                licensePlates = new List<LicensePlateDataDocument>();
             }
 
             exportedCount = licensePlates.Count();

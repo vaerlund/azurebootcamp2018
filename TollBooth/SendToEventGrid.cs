@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs.Host;
 using TollBooth.Models;
@@ -29,12 +27,12 @@ namespace TollBooth
             if (data.LicensePlateFound)
             {
                 // TODO 3: Modify send method to include the proper eventType name value for saving plate data.
-                // COMPLETE: await Send(...);
+                await Send("savePlateData", "TollBooth/CustomerService", data);
             }
             else
             {
                 // TODO 4: Modify send method to include the proper eventType name value for queuing plate for manual review.
-                // COMPLETE: await Send(...);
+                await Send("queuePlateForManualCheckup", "TollBooth/CustomerService", data);
             }
         }
 

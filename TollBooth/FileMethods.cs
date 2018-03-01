@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
 using Microsoft.Azure.WebJobs.Host;
@@ -58,7 +57,7 @@ namespace TollBooth
                         // Upload blob.
                         stream.Position = 0;
                         // TODO 7: Asyncronously upload the blob from the memory stream.
-                        // COMPLETE: await blob...;
+                        await blob.UploadFromStreamAsync(stream);
 
                         successful = true;
                     }
