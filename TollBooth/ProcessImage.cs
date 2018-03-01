@@ -45,7 +45,7 @@ namespace TollBooth
                 log.Error(e.Message);
             }
 
-            log.Info($"Finished processing. Detected the following license plate: {licensePlateText}");
+            log.Info($"Finished processing! Detected the following license plate: {licensePlateText}");
         }
     }
 }
